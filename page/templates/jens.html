@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}
+    <title>{{code}}</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static 'jens.css' %} />
+{% endblock %}
+
+{% block section %}
+    <div style="display:flex; justify-content: space-evenly;">
+        <svg width=700 height=450>
+            <text x=40% y=75 style="stroke:#0000ff;stroke-width:2px;fill:yellow;font-family:Comic Sans MS;font-size:92px">{{kafsh.model}}</text>
+            <image x=50 y=100 href={% static kafsh.img %} alt="face" width=300 height=300 />
+            <text x=360 y=140 class="adi">Model:</text>
+            <text x=500 y=140 class="bozorg">{{kafsh.model}}</text>
+            <text x=360 y=180 class="adi">Color:</text>
+            <text x=500 y=180 class="bozorg">{{kafsh.color}}</text>
+            <text x=360 y=220 class="adi">Size:</text>
+            <text x=500 y=220 class="bozorg">{{kafsh.size}}</text>
+            <text x=360 y=260 class="adi">Price:</text>
+            <text x=500 y=260 class="bozorg">{{kafsh.price}}</text>
+            <text x=360 y=300 class="adi">Tedad:</text>
+            <text x=500 y=300 class="bozorg">{{kafsh.n}}</text>
+            <text x=360 y=340 class="adi">Emtiaz:</text>
+            <text x=500 y=340 class="bozorg">{{emtiaz}}</text>
+            {% if kafsh.takhfif != "No takhfif" %}
+                <text x=360 y=380 class="adi">Takhfif:</text>
+                <text x=500 y=380 class="bozorg">{{kafsh.takhfif}}</text>
+            {% endif %}
+        </svg>
+
+        <div class="button" onclick="gourl('buy',true)">
+            <p style="height: 10px;position: relative; top:-30px; text-align: center;">Add to Sabad kharid</p>
+        </div>
+    </div>
+{% endblock %}

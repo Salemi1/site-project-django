@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Factor</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static 'factor.css' %}>
+{% endblock %}
+
+{% block section %}
+    <div style="display:flex; justify-content: space-evenly;">
+        <div>
+            {% if sabad %}
+                <table>
+                    <tr>
+                        <th>index</th>
+                        <th>Name</th>
+                        <th>size</th>
+                        <th>color</th>
+                        <th>price</th>
+                    </tr>
+                    {% for i in sabad %}
+                        <tr>
+                            <td style="color: aliceblue;">{{forloop.counter}}</td>
+                            {% for ii in i %}
+                                <td class="list" style="color: {% cycle 'yellow' 'magenta' %};">{{ii}}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h1 class="nofing">No fings buying to now!</h1>
+            {% endif %}
+        </div>
+        {% if sabad %}
+            <div class="button" onclick="gourl('pardakht')">
+                <p style="height: 10px;position: relative; top:-30px; text-align: center;">Add to Sabad kharid</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

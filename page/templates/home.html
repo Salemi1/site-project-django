@@ -1,0 +1,165 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "home.css" %}>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        len=document.getElementById('x').innerText
+        var x = 0;
+        edit('x',x);
+
+        function init() {
+            document.getElementsByTagName('aside')[0].hidden=true;
+            document.getElementsByTagName('body')[0].style.overflowY='hidden';
+
+            anime('start1', 0.5, 1.6, 1.9);
+
+            anime('start2', 3.7, 6.5, 0,   -250, 5,'righting');
+
+            anime('start4',6.6,  13.6,  0.1,  ['100px','120px'], 30,'static');
+            anime('start5',6.6,  13.6,  0.1, ['x',530,520,540,1],25,'trembling');
+
+            anime('start3', 14, 15.2,1.9);
+
+            setTimeout(() => { document.getElementById("start").hidden=true; } ,  17100);
+            setTimeout(() => { document.getElementsByTagName('aside')[0].hidden=false; } , 17100);
+            setTimeout(() => { document.getElementsByTagName('body')[0].style.overflowY='auto'; } , 17100);
+        }
+
+        var timers={'t':1};
+        var preporty={};
+        function anime(id,start,end,sep,defalt=2,loop=28,typ='langered') {
+            preporty[id]=defalt;
+            if (['static','trembling'].includes(typ)) document.getElementById(id).style.position='absolute';
+            setTimeout(() => { document.getElementById(id).hidden=false; } , start*1000);
+            setTimeout(() => { timers[id]=setInterval(()=> { editing(typ,id); } , loop); } , start*1000 );
+            setTimeout(() => { clearInterval(timers[id]); } , end*1000);
+            setTimeout(() => { document.getElementById(id).hidden=true; } , (end+sep)*1000);
+        }
+
+        function editing(typ,id) {
+            var ele=document.getElementById(id);
+            if(typ=='langered') {
+                preporty[id]+=2;
+                ele.style.fontSize=preporty[id]+'px';
+            } if(typ=='righting') {
+                preporty[id]+=1;
+                ele.style.left=preporty[id]+'px';
+            } if(typ=='trembling') {
+                let lis=preporty[id];
+                if(lis[1]<lis[2]) lis[4]=1;
+                if(lis[1]>lis[3]) lis[4]=-1;
+                lis[1]+=2*lis[4];
+                if (lis[0]=='x') ele.style.left=lis[1]+'px';
+                else ele.style.top=lis[1]+'px';
+            } if(typ=='static') {
+                ele.style.left=preporty[id][0];
+                ele.style.top=preporty[id][1];
+            }
+        }
+        
+        function moving(jeh='l')
+        {
+            if ( jeh=='l' ) {
+                if ( x<2 )
+                    x++;
+                else
+                    x=0;
+            } else {
+                if ( x>0 )
+                    x--;
+                else
+                    x=2;
+            }
+
+            for (let j=0; j<len; j++)
+            {
+                for (let i=0; i<5; i++)
+                {
+                    let ele=document.getElementsByName("vip"+(i+1)).item(j);
+                    ele.style.left=((i-x)*1+5)+'%';
+                    if ( i-x>2 || i-x<0 )
+                        ele.hidden=true;
+                    else
+                        ele.hidden=false;
+                }
+            }
+        }
+
+        init();
+        moving();
+        setInterval(()=>{ moving(); },6500);
+
+    </script>
+{% endblock %}
+
+{% block section %}
+
+    <div id="start" style="width: 100%; height: 1000px;">
+        <h1 class="start" id="start1" hidden="true">Welcome to {{name}} shop!</h1>
+        <h1 class="start" id="start2" hidden="true">Are you ready to buy some thing?</h1>
+        <h1 class="start" id="start3" hidden="true">So let's go shoping!&#128526</h1>
+        <div class="start" id="start4" hidden="true" style="top: 500px;">
+            <img src="{% static 'insta1.jpg' %}" alt="img" width="420px" height="400px">
+        </div>
+        <div class="start"id="start5" hidden="true">
+            <img src="{% static 'toleft.png' %}" alt="img">
+        </div>
+    </div>
+
+    <div>
+        {% for v in vip %}
+            <div class="nem">
+                <h1>{{v.title}}</h1>
+                <input onclick="moving('l')" type="submit" value="<==" style="left: 5px;" />
+                <input onclick="moving('r')" type="submit" value="==>" style="right: 5px;" />
+                <div class="vip" name="vip1" >
+                    <img width="75%" height="75%" src={% static v.kafsh1.img %} />
+                    <p>{{v.kafsh1.model}}</p>
+                </div>
+                <div class="vip" name="vip2" >
+                    <img width="75%" height="75%" src={% static v.kafsh2.img %} />
+                    <p>{{v.kafsh2.model}}</p>
+                </div>
+                <div class="vip" name="vip3" >
+                    <img width="75%" height="75%" src={% static v.kafsh3.img %} />
+                    <p>{{v.kafsh3.model}}</p>
+                </div>
+                <div class="vip" name="vip4"  >
+                    <img width="75%" height="75%" src={% static v.kafsh4.img %} />
+                    <p>{{v.kafsh4.model}}</p>
+                </div>
+                <div class="vip" name="vip5"  >
+                    <img width="75%" height="75%" src={% static v.kafsh5.img %} />
+                    <p>{{v.kafsh5.model}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h1>Hello Moony!</h1>
+    <h2 id="x">5</h2>
+    <h2>{{x}}</h2>
+    <form action="" method="post" name="form1">
+        {% csrf_token %}
+        {{form1}}
+        <input onclick="edit('x',--x)" type="submit" name="left" value="left" />
+        <input onclick="edit('x',++x)" type="submit" name="right" value="right" />
+    </form>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+    <h1>Hello Moony!</h1>
+
+{% endblock %}

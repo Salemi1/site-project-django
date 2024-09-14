@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Log in</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "login.css" %} />
+{% endblock %}
+
+{% block section %}
+    {% if error %}
+        <h2 style="color:red; font-size:400%; stroke:#000; stroke-width:4px;">Error! Username or Password isn't currect</h2>
+    {% endif %}
+    <div class="form">
+        <h1>Log in</h1>
+        <form action="" method="post" name="form3" id="form">
+            <center>
+                {% csrf_token %}
+                {{form3}}
+            </center>
+            <input type="submit" name="sabt" value="Log in" id="button" />
+            </form>
+        <h3>No sabe name to now? Sabte name:</h3>
+        <a onclick="gourl('sabt')" style="width: 200px;" class="header-button">Sabte name</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Sabte name</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "login.css" %} />
+{% endblock %}
+
+{% block section %}
+    <div class="form">
+        <h1>Sabe name</h1>
+        <form action="" method="post" name="form2" id="form">
+            {% csrf_token %}
+            {{form2}}
+            <input type="submit" name="sabt" value="sabte name" id="button" />
+        </form>
+    </div>
+{% endblock %}

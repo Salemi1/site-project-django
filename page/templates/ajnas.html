@@ -1,0 +1,68 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}
+    <title>{{name}}'s ajnas</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href={% static "ajnas.css" %} />
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        //let abc=document.getElementById("jens");
+        //abc.style.backgroundColor="black";
+        //abc.style.bottom="100px";
+        let abc=document.getElementsByClassName("jens");
+        for (let i = 1; i <= abc.length; i++) {
+            var di = document.getElementById("jens"+String(i))
+            if (i%2==0)
+                di.style.left="55%";
+            di.style.top=String(i*250-300+i%2*250)+"px";
+        }
+    </script>
+{% endblock %}
+
+{% block section %}
+    <div>
+        {% for i in ajnas %}
+            <div class="jens" onclick="gourl('{{forloop.counter}}',true)" id="jens{{forloop.counter}}">
+                <div style="display:flex; justify-content: space-evenly; height: 400px;">
+                    <img src={% static i.img %} width="45%" height="85%" style="position: relative;top:15px;" />
+                    <div>
+                        <div style="display:flex; justify-content: space-evenly;">
+                            <p class="adi" style="bottom: 20px;">model: </p>
+                            <p class="bozorg" style="bottom: 20px;">{{i.model}}</p>
+                        </div>
+                        <div style="display:flex; justify-content: space-evenly;">
+                            <p class="adi" style="bottom: 60px;">size: </p>
+                            <p class="bozorg" style="bottom: 60px;">{{i.size}}</p>
+                        </div>
+                        <div style="display:flex; justify-content: space-evenly;">
+                            <p class="adi" style="bottom: 100px;">color: </p>
+                            <p class="bozorg" style="bottom: 100px; background-color: {{i.color}};">{{i.color}}</p>
+                        </div>
+                        <div style="display:flex; justify-content: space-evenly;">
+                            <p class="adi" style="bottom: 130px;">price: </p>
+                            <p class="bozorg" style="bottom: 130px;">{{i.price}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% if i.takhfif != "No takhfif" %}
+                    <svg width="70px" height="70px" style="transform: rotate(0); position:absolute; left:20px; bottom:25px;">
+                        <defs>
+                            <linearGradient id="color" x1="5%" y1="5%" x2="95%" y2="95%">
+                                <stop offset="0%" style="stop-color: red; " />
+                                <stop offset="50%" style="stop-color: #fff; " />
+                                <stop offset="100%" style="stop-color: red; " />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="35px" cy="35px" r="35" fill="url(#color)" />
+                        <text x="2px" y="45px" fill="red" font-size="32px" font-weight="bold">{{i.takhfif}}</text>
+                    </svg>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

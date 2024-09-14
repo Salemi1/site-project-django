@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+
+        {% block title %}<title>{{name}}</title>{% endblock %}
+
+        <link rel="stylesheet" href={% static "shop.css" %}>
+        {% block css %}{% endblock %}
+
+        <script>
+            function edit(id,value)
+            {
+                var span = document.getElementById(id);
+                span.innerText = value;
+            }
+
+            function gourl(url,conti=false)
+            {
+                if (url!='') url+='/'
+                if (conti)
+                    window.location.href+=url;
+                else
+                    window.location.href=get_first(window.location.href)+url;
+            }
+
+            function get_first(path)
+            {
+                first="";
+                for (let i = 0; i < path.length; i++)
+                {
+                    const char = path[i];
+                    first+=char
+                    if (i>9 && char=='/')
+                        return first;
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <header>
+            <div id="header" class="header">
+                <div class="header-big-text">{{name}}</div>
+                <div class="header-button" style="left:  4%;" onclick="gourl('call')">Call me</div>
+                <div class="header-button" style="left: 24%;" onclick="gourl('ajnas')">Ajnas</div>
+                <div class="header-button" style="left: 44%;" onclick="gourl('')">Home</div>
+                <div class="header-button" style="left: 64%;" onclick="gourl('factor')">Factor</div>
+                <div class="header-button" style="left: 84%;" onclick="gourl('')">NULL</div>
+                <div class="header-button-small" style="left: 9%;" onclick="gourl('call')">Call</div>
+                <div class="header-button-small" style="left: 19%;" onclick="gourl('login')">login</div>
+                <div class="header-button-small" style="left: 69%;" onclick="gourl('about')">About</div>
+                <div class="header-button-small" style="left: 79%; width: 7%;" onclick="gourl('sharayet')">Sharayet</div>
+            </div>
+        </header>
+
+        <div style="display:flex; justify-content: space-evenly;">
+            {% if not clear %}
+                <aside style="width: 17%;">
+                    <div id="aside" style="background-color: cornflowerblue; border-radius: 30px; position: relative; transition: .3s;">
+                        <h1>.</h1>
+                        <h1>.</h1>
+                        <h1 style="text-align: center; font-family: 'Algerian';">AD</h1>
+                        {% for i in ad %}
+                            <div class="ad">
+                                <a href="{{i.link}}"><h4>{{i.title}}</h4></a>
+                                <p>{{i.text}}</p>
+                            </div>
+                        {% endfor %}
+                        <pre> </pre>
+                    </div>
+                </aside>
+            {% endif %}
+            
+            <section style="width: 80%;">
+                <h1>.</h1>
+                <h2>.</h2>
+                {% block section %} <h1 style="font-size: 300%; font-style: italic;">Error 404</h1> {% endblock %}
+            </section>
+        </div>
+
+        {% if not clear %}
+            <footer>
+                <div class="footer">
+                    <h3>Ertebat ba ma:</h3>
+                    <h4 style="left: 20%;top: +10px;">Eitaa -> @k_salemi</h4>
+                    <h4 style="left: 40%;top: -30px;">Shad -> +989106004247</h4>
+                    <h4 style="left: 60%;top: -70px;">telegram -> @salemi1378</h4>
+                    <h3 style="top: -10px;">Spansers:</h3>
+                    <img style="left: 20%;" src={% static "adidas.png" %} alt="adidas" width="90px" height="90px" />
+                    <img style="left: 30%;" src={% static "pl.png" %} alt="pl" width="90px" height="90px" />
+                    <img style="left: 40%;" src={% static "angrybit.png" %} alt="angrybit" width="90px" height="90px" />
+                </div>
+            </footer>
+        {% endif %}
+
+    </body>
+
+    <script>
+        var prevScrollpos = window.pageYOffset;
+
+        /* Get the header element and it's position */
+        var headerDiv = document.querySelector("header");
+        var headerBottom = headerDiv.offsetTop + headerDiv.offsetHeight;
+
+        window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+
+            /* if we're scrolling up, or we haven't passed the header,
+                show the header at the top */
+            if (prevScrollpos > currentScrollPos  || currentScrollPos < headerBottom)
+            {
+                document.getElementById("header").style.top = "0";
+                document.getElementById("aside").style.top = "0";
+            }
+            else
+            {
+                document.getElementById("header").style.top = "-70px";
+                document.getElementById("aside").style.top = "-30px";
+            }
+
+            prevScrollpos = currentScrollPos;
+        }
+        llpos = currentScrollPos;
+    </script>
+    {% block javascript %}{% endblock %}
+
+</html>
