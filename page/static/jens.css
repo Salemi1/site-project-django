@@ -1,0 +1,37 @@
+.adi {
+    fill: white;
+    font-size: 32px;
+    font-family: Arial;
+    position: relative;
+    right: 5%;
+}
+
+.bozorg {
+    fill: #00ff00;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: Berlin Sans FB;
+    position: relative;
+    right: 5%;
+}
+
+.button {
+    position: relative;
+    top: 200px;
+    width: 360px;
+    height: 80px;
+    color: greenyellow;
+    background-color: #00f;
+    font-size: 42px;
+    font-family: Calibri;
+    font-weight: 500;
+    border: solid greenyellow 4px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.button:hover {
+    color: #00f;
+    font-weight: 900;
+    background-color: greenyellow;
+    transform: scale(1);
+}

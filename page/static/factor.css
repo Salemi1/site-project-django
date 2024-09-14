@@ -1,0 +1,52 @@
+.list {
+    font-weight: bold;
+    font-size: 110%;
+}
+
+table {
+    font-size: 200%;
+    border: 20px groove yellowgreen;
+    border-radius: 12px;
+    text-align: center;
+    padding: 20px;
+}
+
+th {
+    color: rgb(215, 248, 149);
+    font-weight: 900;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+td {
+    padding: 6px;
+    border-top: 5px solid black;
+}
+
+.button {
+    position: relative;
+    top: 200px;
+    width: 360px;
+    height: 80px;
+    color: greenyellow;
+    background-color: #00f;
+    font-size: 42px;
+    font-family: Calibri;
+    font-weight: 500;
+    border: solid greenyellow 4px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.button:hover {
+    color: #00f;
+    font-weight: 900;
+    background-color: greenyellow;
+    transform: scale(1);
+}
+
+.nofing {
+    color: white;
+    font-size: 300%;
+    text-align: center;
+    position: relative;
+    top: 70%;
+}

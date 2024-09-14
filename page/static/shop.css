@@ -1,0 +1,103 @@
+body{
+    background-color: #00f;
+    overflow-x: hidden;
+}
+
+.header{
+    position: fixed;
+    background-color: darkblue;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 110px;
+    transition: .3s;
+    z-index: 1;
+}
+
+.header-button{
+    position: absolute;
+    color: gold ;
+    background-color: magenta;
+    border: 2px solid red;
+    border-radius: 6px;
+    bottom: 7px;
+    width: 12%;
+    height: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    transition: .3s;
+}
+.header-button:hover{
+    color: magenta;
+    background-color: gold;
+    transform: scale(1.1,1.1);
+    cursor: pointer;
+}
+
+.header-big-text{
+    position: relative;
+    top: -10px;
+    color: darkorange;
+    font-size: 72px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.header-button-small{
+    position: absolute;
+    color: white ;
+    background-color: #131;
+    border: 2px solid white;
+    border-radius: 1px;
+    top: 15px;
+    width: 5%;
+    height: 20px;
+    font-size: 18px;
+    text-align: center;
+    transition: .5s;
+}
+.header-button-small:hover{
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ad {
+    position: relative;
+    left: 5%;
+    margin-bottom: 30px;
+    background-color: blueviolet;
+    border-radius: 10px;
+    width: 90%;
+    color: aliceblue;
+    text-align: center;
+}
+.ad a{
+    color: rgb(0, 255, 251);
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
+    width: 100%;
+    height: 300px;
+}
+.footer h3 {
+    position: relative;
+    font-size: 135%;
+    top: 20px;
+    left: 10%;
+    color: greenyellow;
+    width: 150px;
+}
+.footer h4 {
+    color: aliceblue;
+    position: relative;
+    width: 250px;
+}
+.footer img {
+    position: relative;
+    bottom: 10px;
+}
