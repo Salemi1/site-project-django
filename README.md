@@ -7,6 +7,4 @@
 
 [visit my site please😘](hamidpromax.ir)
 
-'''
-# python manage runserver
-'''
+' python manage runserver '
